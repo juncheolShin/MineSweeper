@@ -1,6 +1,4 @@
-/////////////////////////////////////////
-// 2016.12.19
-// Written by À±È£ÅÂ <agensoft@naver.com>
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <conio.h>
@@ -331,9 +329,10 @@ values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , 
 			{
 				if (gameMap[player.y][player.x / 2].mine != 1)
 				{
+					if (gameMap[player.y][player.x / 2].strip == 0)
+						*score += 10;
 					mineRecursive(gameMap, player.y, player.x / 2);
-					*score += 10;
-					if (resultFunc(gameMap, gameLevel, retMineCnt, tmpRetMinCnt,life) == 1)
+					if (resultFunc(gameMap, gameLevel, retMineCnt, tmpRetMinCnt, life, score) == 1)
 					{
 						time(&endTime);
 						elapsedTime = difftime(endTime, startTime);
@@ -356,17 +355,19 @@ values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , 
 							gameMap[i][j].strip = 1;
 						}
 					}*/
-				*score -= 50;
-				gameMap[player.y][player.x / 2].strip = 1;
-				displayMap(gameMap, gameLevel, retMineCnt,life,score);
-				printf("Bomb Explode...!  \n");
-				gotoxy(((MAX_X - gameLevel) * 2) + 3, 5);
-				//system("pause");
-				//return 999;
-				*life -= 1;
-				--* retMineCnt;
-				--tmpRetMinCnt;
-				
+					if (gameMap[player.y][player.x / 2].strip == 0)
+					{
+						*score -= 50;
+						gameMap[player.y][player.x / 2].strip = 1;
+						displayMap(gameMap, gameLevel, retMineCnt, life, score);
+						printf("Bomb Explode...!  \n");
+						gotoxy(((MAX_X - gameLevel) * 2) + 3, 5);
+						//system("pause");
+						//return 999;
+						*life -= 1;
+						--* retMineCnt;
+						--tmpRetMinCnt;
+					}
 				}
 			}
 			else if (ch == ESC)
@@ -419,10 +420,10 @@ void displayMap(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , i
 		}
 		printf("\n");
 	}
-	gotoxy(((MAX_X - gameLevel) * 2) + 3, 1);	textcolor(14);	printf("¢Ç Á¡¼ö : %2d", *score);
-	gotoxy(((MAX_X - gameLevel) * 2) + 3, 2);	textcolor(14);	printf("¢¾ ³²Àº ¸ñ¼û : %2d", *life);
-	gotoxy(((MAX_X - gameLevel) * 2) + 3, 3);	textcolor(14);	printf("¢Ç ±ê¹ß °³¼ö : %2d", *retMineCnt);
-	gotoxy(((MAX_X - gameLevel) * 2) + 3, 4);
+	gotoxy(((MAX_X - gameLevel) * 2) + 3, 3);	textcolor(14);	printf("¢Ç Á¡¼ö : %2d", *score);
+	gotoxy(((MAX_X - gameLevel) * 2) + 3, 4);	textcolor(14);	printf("¢¾ ³²Àº ¸ñ¼û : %2d", *life);
+	gotoxy(((MAX_X - gameLevel) * 2) + 3, 5);	textcolor(14);	printf("¢Ç ±ê¹ß °³¼ö : %2d", *retMineCnt);
+	gotoxy(((MAX_X - gameLevel) * 2) + 3, 6);
 }
 
 
