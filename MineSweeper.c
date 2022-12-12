@@ -67,13 +67,13 @@ void main()
 	int life;
 	int level1 = 999, level2 = 999, level3 = 999;
 	int score = 0;
-	int score1 = 0, score2 = 0, score3 = 0;//ÃÊ±â ¼³Á¤ µé
+	int score1 = 0, score2 = 0, score3 = 0;//ì´ˆê¸° ì„¤ì • ë“¤
 
 	while (1)
 	{
 
 		system("cls");
-		mainMenu(); //¸ŞÀÎ ¸Ş´º
+		mainMenu(); //ë©”ì¸ ë©”ë‰´
 		fflush(stdin); scanf("%d", &select);
 		system("cls");
 
@@ -81,16 +81,16 @@ void main()
 		{
 		case 1:
 			score = 0; 
-			initMap(gameMap, gameLevel, &retMineCnt); //¸Ê ÃÊ±âÈ­
-			initLife(gameLevel, &life); //»ı¸í ÃÊ±âÈ­
-			v = gameStart(gameMap, gameLevel, &retMineCnt , &life , &score); //°É¸° ½Ã°£
+			initMap(gameMap, gameLevel, &retMineCnt); //ë§µ ì´ˆê¸°í™”
+			initLife(gameLevel, &life); //ìƒëª… ì´ˆê¸°í™”
+			v = gameStart(gameMap, gameLevel, &retMineCnt , &life , &score); //ê±¸ë¦° ì‹œê°„
 
 			if (gameLevel == 10)
 				if (level1 > v.time)
 				{
 					level1 = v.time;
 					score1 = v.score;
-				}//ÃÖ°í ±â·Ï ¼³Á¤
+				}//ìµœê³  ê¸°ë¡ ì„¤ì •
 				if (level1 == v.time)
 					if (score1 < v.score)
 						score1 = v.score;
@@ -99,7 +99,7 @@ void main()
 				{
 					level2 = v.time;
 					score2 = v.score;
-				}//ÃÖ°í ±â·Ï ¼³Á¤
+				}//ìµœê³  ê¸°ë¡ ì„¤ì •
 				if (level2 == v.time)
 					if (score2 < v.score)
 						score2 = v.score;
@@ -108,20 +108,20 @@ void main()
 				{
 					level3 = v.time;
 					score3 = v.score;
-				}//ÃÖ°í ±â·Ï ¼³Á¤
-				if (level3 == v.time) // ½Ã°£ÀÌ °°Àº °æ¿ì
+				}//ìµœê³  ê¸°ë¡ ì„¤ì •
+				if (level3 == v.time) // ì‹œê°„ì´ ê°™ì€ ê²½ìš°
 					if (score3 < v.score)
 						score3 = v.score;
 			break;
 		case 2:
-			gameLevel = levelSelect(gameMap); //³­ÀÌµµ ¼±ÅÃ
+			gameLevel = levelSelect(gameMap); //ë‚œì´ë„ ì„ íƒ
 			break;
-		case 3: //±â·Ï È®ÀÎ
-			printf("¢Ç¢Ç      ÃÖ°í ±â·Ï      ¢Ç¢Ç\n");
-			printf(" 1.ÃÊ  ±Ş : %d ÃÊ Á¡¼ö : %d\n", level1 , score1);
-			printf(" 2.Áß  ±Ş : %d ÃÊ Á¡¼ö : %d\n", level2 , score2);
-			printf(" 3.°í  ±Ş : %d ÃÊ Á¡¼ö : %d\n", level3 , score3);
-			//printf(" 4.ÃÖ»ó±Ş : %d \n", level4);
+		case 3: //ê¸°ë¡ í™•ì¸
+			printf("â–¤â–¤      ìµœê³  ê¸°ë¡      â–¤â–¤\n");
+			printf(" 1.ì´ˆ  ê¸‰ : %d ì´ˆ ì ìˆ˜ : %d\n", level1 , score1);
+			printf(" 2.ì¤‘  ê¸‰ : %d ì´ˆ ì ìˆ˜ : %d\n", level2 , score2);
+			printf(" 3.ê³   ê¸‰ : %d ì´ˆ ì ìˆ˜ : %d\n", level3 , score3);
+			//printf(" 4.ìµœìƒê¸‰ : %d \n", level4);
 			system("pause");
 			break;
 		case 4:
@@ -132,8 +132,8 @@ void main()
 			SoundCredit();
 			system("PAUSE");
 			break;
-		case 0: //°ÔÀÓ Á¾·á
-			puts("°ÔÀÓÀ» Á¾·áÇÕ´Ï´Ù");
+		case 0: //ê²Œì„ ì¢…ë£Œ
+			puts("ê²Œì„ì„ ì¢…ë£Œí•©ë‹ˆë‹¤");
 			return;
 		default:
 			break;
@@ -141,77 +141,77 @@ void main()
 	}
 }
 
-void mainMenu() //¸ŞÀÎ¸Ş´º
+void mainMenu() //ë©”ì¸ë©”ë‰´
 {
 	textcolor(14);
-	puts("¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯");
-	puts("¦­    ¢Ç¢Ç Áö·Ú Ã£±â °ÔÀÓ ¢Ç¢Ç      ¦­");
-	puts("¦­                                  ¦­");
-	puts("¦­          1. °ÔÀÓ ½ÃÀÛ            ¦­");
-	puts("¦­                                  ¦­");
-	puts("¦­          2. ³­ÀÌµµ ¼±ÅÃ          ¦­");
-	puts("¦­                                  ¦­");
-	puts("¦­          3. ÃÖ°í Á¡¼ö            ¦­");
-	puts("¦­                                  ¦­");
-	puts("¦­          4. Á¶ ÀÛ ¹ı             ¦­");
-	puts("¦­                                  ¦­");
-	puts("¦­          5. À½¿ø ÃâÃ³            ¦­");
-	puts("¦­                                  ¦­");
-	puts("¦­          0. Á¾     ·á            ¦­");
-	puts("¦­                                  ¦­");
-	puts("¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°");
+	puts("â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”“");
+	puts("â”ƒ    â–¤â–¤ ì§€ë¢° ì°¾ê¸° ê²Œì„ â–¤â–¤      â”ƒ");
+	puts("â”ƒ                                  â”ƒ");
+	puts("â”ƒ          1. ê²Œì„ ì‹œì‘            â”ƒ");
+	puts("â”ƒ                                  â”ƒ");
+	puts("â”ƒ          2. ë‚œì´ë„ ì„ íƒ          â”ƒ");
+	puts("â”ƒ                                  â”ƒ");
+	puts("â”ƒ          3. ìµœê³  ì ìˆ˜            â”ƒ");
+	puts("â”ƒ                                  â”ƒ");
+	puts("â”ƒ          4. ì¡° ì‘ ë²•             â”ƒ");
+	puts("â”ƒ                                  â”ƒ");
+	puts("â”ƒ          5. ìŒì› ì¶œì²˜            â”ƒ");
+	puts("â”ƒ                                  â”ƒ");
+	puts("â”ƒ          0. ì¢…     ë£Œ            â”ƒ");
+	puts("â”ƒ                                  â”ƒ");
+	puts("â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›");
 	printf(" Select > ");
 }
 
-void levelSelectMenu() //³­ÀÌµµ ¼±ÅÃ
+void levelSelectMenu() //ë‚œì´ë„ ì„ íƒ
 {
 	textcolor(11);
-	puts("¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯");
-	puts("¦­    ¢Ç¢Ç ³­ÀÌµµ ¼±ÅÃ ¢Ç¢Ç   ¦­");
-	puts("¦­                            ¦­");
-	puts("¦­        1. ÃÊ     ±Ş        ¦­");
-	puts("¦­                            ¦­");
-	puts("¦­        2. Áß     ±Ş        ¦­");
-	puts("¦­                            ¦­");
-	puts("¦­        3. °í     ±Ş        ¦­");
-	puts("¦­                            ¦­");
-	//puts("¦­        4. ÃÖ  »ó  ±Ş       ¦­");
-	//puts("¦­                            ¦­");
-	puts("¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°");
+	puts("â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”“");
+	puts("â”ƒ    â–¤â–¤ ë‚œì´ë„ ì„ íƒ â–¤â–¤   â”ƒ");
+	puts("â”ƒ                            â”ƒ");
+	puts("â”ƒ        1. ì´ˆ     ê¸‰        â”ƒ");
+	puts("â”ƒ                            â”ƒ");
+	puts("â”ƒ        2. ì¤‘     ê¸‰        â”ƒ");
+	puts("â”ƒ                            â”ƒ");
+	puts("â”ƒ        3. ê³      ê¸‰        â”ƒ");
+	puts("â”ƒ                            â”ƒ");
+	//puts("â”ƒ        4. ìµœ  ìƒ  ê¸‰       â”ƒ");
+	//puts("â”ƒ                            â”ƒ");
+	puts("â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›");
 	printf(" Select > ");
 }
 
-void keyInstruction() //Å°¼³¸í
+void keyInstruction() //í‚¤ì„¤ëª…
 {
 	textcolor(11);
-	puts("¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯");
-	puts("¦­        ¢Ç¢Ç Á¶   ÀÛ   ¹ı ¢Ç¢Ç       ¦­");
-	puts("¦­                                     ¦­");
-	puts("¦­        ¹æÇâÅ° : »óÇÏÁÂ¿ì            ¦­");
-	puts("¦­                                     ¦­");
-	puts("¦­        f : ±ê¹ß ²Å±â                ¦­");
-	puts("¦­                                     ¦­");
-	puts("¦­        SPACEBAR : Å¸ÀÏ ¿­±â         ¦­");
-	puts("¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°");
+	puts("â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”“");
+	puts("â”ƒ        â–¤â–¤ ì¡°   ì‘   ë²• â–¤â–¤       â”ƒ");
+	puts("â”ƒ                                     â”ƒ");
+	puts("â”ƒ        ë°©í–¥í‚¤ : ìƒí•˜ì¢Œìš°            â”ƒ");
+	puts("â”ƒ                                     â”ƒ");
+	puts("â”ƒ        f : ê¹ƒë°œ ê¼½ê¸°                â”ƒ");
+	puts("â”ƒ                                     â”ƒ");
+	puts("â”ƒ        SPACEBAR : íƒ€ì¼ ì—´ê¸°         â”ƒ");
+	puts("â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›");
 }
 
-void SoundCredit() //À½¿ø ÃâÃ³
+void SoundCredit() //ìŒì› ì¶œì²˜
 {
 	textcolor(11);
-	puts("¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯");
-	puts("¦­        ¢Ç¢Ç À½¿ø    ÃâÃ³ ¢Ç¢Ç       ¦­");
-	puts("¦­                                     ¦­");
-	puts("¦­½ºÀ§Ä¡ ·£ÅÏ ¹öÆ°, ÇÑ±¹ ÀúÀÛ±Ç À§¿øÈ¸,¦­");
-	puts("¦­		°øÀ¯¸¶´ç, CC BY       ¦­");
-	puts("¦­                                     ¦­");
-	puts("¦­                                     ¦­");
-	puts("¦­ÆøÅºÀÌ ÅÍÁö´Â ¼Ò¸®, ÇÑ±¹ÀúÀÛ±ÇÀ§¿øÈ¸,¦­");
-	puts("¦­		°øÀ¯¸¶´ç, CC BY       ¦­");
-	puts("¦­                                     ¦­");
-	puts("¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°");
+	puts("â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”“");
+	puts("â”ƒ        â–¤â–¤ ìŒì›    ì¶œì²˜ â–¤â–¤       â”ƒ");
+	puts("â”ƒ                                     â”ƒ");
+	puts("â”ƒìŠ¤ìœ„ì¹˜ ëœí„´ ë²„íŠ¼, í•œêµ­ ì €ì‘ê¶Œ ìœ„ì›íšŒ,â”ƒ");
+	puts("â”ƒ		ê³µìœ ë§ˆë‹¹, CC BY       â”ƒ");
+	puts("â”ƒ                                     â”ƒ");
+	puts("â”ƒ                                     â”ƒ");
+	puts("â”ƒí­íƒ„ì´ í„°ì§€ëŠ” ì†Œë¦¬, í•œêµ­ì €ì‘ê¶Œìœ„ì›íšŒ,â”ƒ");
+	puts("â”ƒ		ê³µìœ ë§ˆë‹¹, CC BY       â”ƒ");
+	puts("â”ƒ                                     â”ƒ");
+	puts("â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›");
 }
 
-void initMap(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt) //¸ÊÀ» ÀüºÎ 0À¸·Î ÃÊ±âÈ­
+void initMap(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt) //ë§µì„ ì „ë¶€ 0ìœ¼ë¡œ ì´ˆê¸°í™”
 {
 	int i, j;
 	int cx, cy;
@@ -238,7 +238,7 @@ void initMap(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt) //¸ÊÀ
 				gameMap[i][j].strip = 0;
 		}
 	}
-	randMine(gameMap, gameLevel, retMineCnt); //Áö·Ú ½É±â
+	randMine(gameMap, gameLevel, retMineCnt); //ì§€ë¢° ì‹¬ê¸°
 
 	for (i = 0; i < MAX_X - gameLevel; i++)
 	{
@@ -258,7 +258,7 @@ void initMap(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt) //¸ÊÀ
 	}
 }
 
-void initLife(int gameLevel, int *life) //»ı¸í ÃÊ±âÈ­
+void initLife(int gameLevel, int *life) //ìƒëª… ì´ˆê¸°í™”
 {
 	int i;
 
@@ -270,10 +270,10 @@ void initLife(int gameLevel, int *life) //»ı¸í ÃÊ±âÈ­
 	*life = i;
 }
 
-void randMine(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt) //Áö·Ú ½É±â
+void randMine(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt) //ì§€ë¢° ì‹¬ê¸°
 {
 	int i, j;
-	int mineCntSet; // Áö·Ú °³¼öÀÓ
+	int mineCntSet; // ì§€ë¢° ê°œìˆ˜ì„
 
 	if (gameLevel == 10)		mineCntSet = 10;
 	else if (gameLevel == 5)	mineCntSet = 30;
@@ -295,7 +295,7 @@ void randMine(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt) //Áö
 }
 
 
-values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , int *life , int *score) //°ÔÀÓ ½ÃÀÛ
+values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , int *life , int *score) //ê²Œì„ ì‹œì‘
 {
 	values p;
 	struct APoint player;
@@ -310,12 +310,12 @@ values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , 
 	tmpRetMinCnt = *retMineCnt;
 	player.x = 2;
 	player.y = 1;
-	displayMap(gameMap, gameLevel, retMineCnt,life,score); //¸Ê Ç¥½Ã
+	displayMap(gameMap, gameLevel, retMineCnt,life,score); //ë§µ í‘œì‹œ
 	gotoxy(player.x, player.y);
 
 	while (1)
 	{
-		if (*life == 0) //¸ñ¼ûÀÌ 0ÀÌ¸é
+		if (*life == 0) //ëª©ìˆ¨ì´ 0ì´ë©´
 		{
 			for (i = 0; i < MAX_X - gameLevel; i++)
 			{
@@ -363,12 +363,12 @@ values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , 
 					else { gameMap[player.y][player.x / 2].flag = 0;	++* retMineCnt; }
 				}
 
-				if (resultFunc(gameMap, gameLevel, retMineCnt, tmpRetMinCnt,life,score) == 1) //Å¬¸®¾î ÇßÀ¸¸é
+				if (resultFunc(gameMap, gameLevel, retMineCnt, tmpRetMinCnt,life,score) == 1) //í´ë¦¬ì–´ í–ˆìœ¼ë©´
 				{
 					time(&endTime);
 					elapsedTime = difftime(endTime, startTime);
 					gotoxy(((MAX_X - gameLevel) * 2) + 3, 5);
-					printf("¢Ç °æ°ú ½Ã°£ : %3d ÃÊ ", (int)elapsedTime);
+					printf("â–¤ ê²½ê³¼ ì‹œê°„ : %3d ì´ˆ ", (int)elapsedTime);
 					gotoxy(((MAX_X - gameLevel) * 2) + 3, 6);
 					system("pause");
 					p.time = elapsedTime;
@@ -376,7 +376,7 @@ values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , 
 					return p;
 				}
 			}
-			else if (ch == SPACEBAR) // Å¸ÀÏ ¿ÀÇÂ
+			else if (ch == SPACEBAR) // íƒ€ì¼ ì˜¤í”ˆ
 			{
 				if (gameMap[player.y][player.x / 2].mine != 1)
 				{
@@ -389,7 +389,7 @@ values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , 
 						time(&endTime);
 						elapsedTime = difftime(endTime, startTime);
 						gotoxy(((MAX_X - gameLevel) * 2) + 3, 5);
-						printf("¢Ç °æ°ú ½Ã°£ : %3d ÃÊ ", (int)elapsedTime);
+						printf("â–¤ ê²½ê³¼ ì‹œê°„ : %3d ì´ˆ ", (int)elapsedTime);
 						gotoxy(((MAX_X - gameLevel) * 2) + 3, 6);
 						system("pause");
 						p.time = elapsedTime;
@@ -397,7 +397,7 @@ values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , 
 						return p;
 					}
 				}
-				else	// Áö·ÚÀÏ °æ¿ì
+				else	// ì§€ë¢°ì¼ ê²½ìš°
 				{
 
 					/*for (i = 0; i < MAX_X - gameLevel; i++)
@@ -436,7 +436,7 @@ values gameStart(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , 
 	}
 }
 
-void displayMap(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , int *life , int *score) //¸Ê Ç¥½Ã
+void displayMap(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , int *life , int *score) //ë§µ í‘œì‹œ
 {
 	int i, j;
 
@@ -446,43 +446,43 @@ void displayMap(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt , i
 	{
 		for (j = 0; j < MAX_Y - gameLevel; j++)
 		{
-			if (gameMap[i][j].wall == 1) { textcolor(4);	printf("¡á"); }
+			if (gameMap[i][j].wall == 1) { textcolor(4);	printf("â– "); }
 			else
 			{
 				if (gameMap[i][j].strip == 0)
 				{
-					if (gameMap[i][j].flag == 0) { textcolor(3);	printf("¡á"); }
-					else { textcolor(4);	printf("¢Ò"); }
+					if (gameMap[i][j].flag == 0) { textcolor(3);	printf("â– "); }
+					else { textcolor(4);	printf("Â¶"); }
 				}
 				else if (gameMap[i][j].strip == 1)
 				{
-					if (gameMap[i][j].mine == 1) { textcolor(12);	printf("¡Ø"); }
+					if (gameMap[i][j].mine == 1) { textcolor(12);	printf("â€»"); }
 					else
 					{
-						if (gameMap[i][j].mineCnt == 0) { textcolor(6);	printf("¡à"); }
-						else if (gameMap[i][j].mineCnt == 1) { textcolor(1);	printf("¨ç"); }
-						else if (gameMap[i][j].mineCnt == 2) { textcolor(2);	printf("¨è"); }
-						else if (gameMap[i][j].mineCnt == 3) { textcolor(3);	printf("¨é"); }
-						else if (gameMap[i][j].mineCnt == 4) { textcolor(5);	printf("¨ê"); }
-						else if (gameMap[i][j].mineCnt == 5) { textcolor(6);	printf("¨ë"); }
-						else if (gameMap[i][j].mineCnt == 6) { textcolor(7);	printf("¨ì"); }
-						else if (gameMap[i][j].mineCnt == 7) { textcolor(8);	printf("¨í"); }
-						else if (gameMap[i][j].mineCnt == 8) { textcolor(9);	printf("¨î"); }
+						if (gameMap[i][j].mineCnt == 0) { textcolor(6);	printf("â–¡"); }
+						else if (gameMap[i][j].mineCnt == 1) { textcolor(1);	printf("â‘ "); }
+						else if (gameMap[i][j].mineCnt == 2) { textcolor(2);	printf("â‘¡"); }
+						else if (gameMap[i][j].mineCnt == 3) { textcolor(3);	printf("â‘¢"); }
+						else if (gameMap[i][j].mineCnt == 4) { textcolor(5);	printf("â‘£"); }
+						else if (gameMap[i][j].mineCnt == 5) { textcolor(6);	printf("â‘¤"); }
+						else if (gameMap[i][j].mineCnt == 6) { textcolor(7);	printf("â‘¥"); }
+						else if (gameMap[i][j].mineCnt == 7) { textcolor(8);	printf("â‘¦"); }
+						else if (gameMap[i][j].mineCnt == 8) { textcolor(9);	printf("â‘§"); }
 					}
 				}
 			}
 		}
 		printf("\n");
 	}
-	gotoxy(((MAX_X - gameLevel) * 2) + 3, 3);	textcolor(14);	printf("¢Ç Á¡¼ö : %2d    ", *score);
-	gotoxy(((MAX_X - gameLevel) * 2) + 3, 4);	textcolor(14);	printf("¢¾ ³²Àº ¸ñ¼û : %2d    ", *life);
-	gotoxy(((MAX_X - gameLevel) * 2) + 3, 5);	textcolor(14);	printf("¢Ç ±ê¹ß °³¼ö : %2d", *retMineCnt);
+	gotoxy(((MAX_X - gameLevel) * 2) + 3, 3);	textcolor(14);	printf("â–¤ ì ìˆ˜ : %2d    ", *score);
+	gotoxy(((MAX_X - gameLevel) * 2) + 3, 4);	textcolor(14);	printf("â™¥ ë‚¨ì€ ëª©ìˆ¨ : %2d    ", *life);
+	gotoxy(((MAX_X - gameLevel) * 2) + 3, 5);	textcolor(14);	printf("â–¤ ê¹ƒë°œ ê°œìˆ˜ : %2d", *retMineCnt);
 	gotoxy(((MAX_X - gameLevel) * 2) + 3, 6);
 	CursorView_Visible();
 }
 
 
-void mineRecursive(struct Node(*gameMap)[MAX_Y], int tmpX, int tmpY) //±ÙÃ³ Áö·Ú °³¼ö ÆÄ¾Ç
+void mineRecursive(struct Node(*gameMap)[MAX_Y], int tmpX, int tmpY) //ê·¼ì²˜ ì§€ë¢° ê°œìˆ˜ íŒŒì•…
 {
 	int i, j;
 
@@ -504,7 +504,7 @@ void mineRecursive(struct Node(*gameMap)[MAX_Y], int tmpX, int tmpY) //±ÙÃ³ Áö·Ú
 	}
 }
 
-int resultFunc(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt, int tmpRetMineCnt,int *life, int *score) //°á°ú
+int resultFunc(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt, int tmpRetMineCnt,int *life, int *score) //ê²°ê³¼
 {
 	int i, j;
 	int stripCnt = 0;
@@ -530,7 +530,7 @@ int resultFunc(struct Node(*gameMap)[MAX_Y], int gameLevel, int* retMineCnt, int
 	return 0;
 }
 
-int levelSelect(struct Node(*gameMap)[MAX_Y]) //·¹º§ ¼±ÅÃ
+int levelSelect(struct Node(*gameMap)[MAX_Y]) //ë ˆë²¨ ì„ íƒ
 {
 	int select;
 	while (1)
@@ -577,15 +577,15 @@ void textcolor(int color_number)
 void CursorView_Invisible()
 {
 	CONSOLE_CURSOR_INFO cursorInfo = { 0, };
-	cursorInfo.dwSize = 1; //Ä¿¼­ ±½±â (1 ~ 100)
-	cursorInfo.bVisible = FALSE; //Ä¿¼­ Visible TRUE(º¸ÀÓ) FALSE(¼û±è)
+	cursorInfo.dwSize = 1; //ì»¤ì„œ êµµê¸° (1 ~ 100)
+	cursorInfo.bVisible = FALSE; //ì»¤ì„œ Visible TRUE(ë³´ì„) FALSE(ìˆ¨ê¹€)
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
 
 void CursorView_Visible()
 {
 	CONSOLE_CURSOR_INFO cursorInfo = { 0, };
-	cursorInfo.dwSize = 1; //Ä¿¼­ ±½±â (1 ~ 100)
-	cursorInfo.bVisible = TRUE; //Ä¿¼­ Visible TRUE(º¸ÀÓ) FALSE(¼û±è)
+	cursorInfo.dwSize = 1; //ì»¤ì„œ êµµê¸° (1 ~ 100)
+	cursorInfo.bVisible = TRUE; //ì»¤ì„œ Visible TRUE(ë³´ì„) FALSE(ìˆ¨ê¹€)
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
